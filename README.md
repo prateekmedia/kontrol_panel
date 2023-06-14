@@ -4,6 +4,8 @@ The missing control panel for Linux.
 
 Not affiliated by Microsoft or KDE (excuse my **K**)
 
+![image](https://raw.githubusercontent.com/prateekmedia/kontrol_panel/master/screenshot/ss1.png)
+
 !!!<---< WIP >--->!!!
 
 ## Getting Started

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kontrol_panel/src/features/dashboard/domain/dashboard_item.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -10,19 +11,63 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
-    final map = {
-      "Date & Time": Icons.calendar_today_outlined,
-      "Services": Icons.settings,
-      "Users": Icons.person,
-      "Storage": Icons.storage_outlined,
-      "Uninstall program": Icons.delete_forever_outlined,
-      "System Information": Icons.info_outline,
-      "System Logs": Icons.list_alt_outlined,
-      "Updates": Icons.update_outlined,
-      "Policies": Icons.policy_outlined,
-      "Firewall": Icons.network_ping_rounded,
-      "Wifi & Network": Icons.network_wifi,
-    };
+    final map = [
+      DashboardItem(
+        title: "Wifi & Network",
+        description: "Manage your Internet here",
+        icon: Icons.network_wifi,
+      ),
+      DashboardItem(
+        title: "Date & Time",
+        description: "All the settings related to date and time",
+        icon: Icons.calendar_today_outlined,
+      ),
+      DashboardItem(
+        title: "Services",
+        description: "Manage system services here",
+        icon: Icons.settings,
+      ),
+      DashboardItem(
+        title: "Users",
+        description: "Manage system users here",
+        icon: Icons.person,
+      ),
+      DashboardItem(
+        title: "Storage",
+        description: "Manage your storage here",
+        icon: Icons.storage_outlined,
+      ),
+      DashboardItem(
+        title: "Uninstall program",
+        description: "Uninstall programs from here",
+        icon: Icons.delete_forever_outlined,
+      ),
+      DashboardItem(
+        title: "System Information",
+        description: "Your system information",
+        icon: Icons.info_outline,
+      ),
+      DashboardItem(
+        title: "System Logs",
+        description: "View system logs here",
+        icon: Icons.list_alt_outlined,
+      ),
+      DashboardItem(
+        title: "Updates",
+        description: "Update your system here",
+        icon: Icons.update_outlined,
+      ),
+      DashboardItem(
+        title: "Policies",
+        description: "Edit Policies",
+        icon: Icons.policy_outlined,
+      ),
+      DashboardItem(
+        title: "Firewall",
+        description: "Manage Firewall Configuration",
+        icon: Icons.lock_reset_sharp,
+      ),
+    ];
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -75,17 +120,19 @@ class _DashboardPageState extends State<DashboardPage> {
                 width: 1000,
                 child: GridView.builder(
                   padding: const EdgeInsets.all(40),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount:
+                        (MediaQuery.of(context).size.width ~/ 500).clamp(1, 2),
                     crossAxisSpacing: 40,
                     mainAxisSpacing: 20,
-                    childAspectRatio: 1.4,
+                    childAspectRatio: 2.8,
                   ),
                   itemCount: map.length,
                   itemBuilder: (context, index) => InkWell(
                     onTap: () {},
                     hoverColor: Colors.deepPurple[50]!.withOpacity(0.7),
                     child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
                       margin: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0.85),
@@ -98,20 +145,35 @@ class _DashboardPageState extends State<DashboardPage> {
                           ),
                         ],
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Icon(
-                            map.values.elementAt(index),
-                            size: 38,
+                            map.elementAt(index).icon,
+                            size: 56,
                             color: Colors.brown,
                           ),
-                          const SizedBox(height: 12),
-                          Text(
-                            map.keys.elementAt(index),
-                            style: const TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w600,
+                          const SizedBox(width: 20),
+                          Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  map.elementAt(index).title,
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Text(
+                                  map.elementAt(index).description,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],

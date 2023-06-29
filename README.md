@@ -2,7 +2,7 @@
 
 The missing control panel for Linux.
 
-Not affiliated by Microsoft or KDE (excuse my **K**)
+Not affiliated by Microsoft or KDE (excuse the **K**)
 
 ![image](https://raw.githubusercontent.com/prateekmedia/kontrol_panel/master/screenshot/ss1.png)
 
